@@ -1,10 +1,12 @@
 -- skidded from vxpe
 
+local api = {}
+
 local void = function() return 0 end
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or void
 local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or void
 
-local function displayPopup(title, text, callback, buttonName)
+local function api.displayPopup(title, text, callback, buttonName)
 	local oldidentity = getidentity()
 	setidentity(8)
 	local ErrorPrompt = getrenv().require(game:GetService("CoreGui").RobloxGui.Modules.ErrorPrompt)
@@ -26,3 +28,5 @@ local function displayPopup(title, text, callback, buttonName)
 	prompt:_open(text)
 	setidentity(oldidentity)
 end
+
+return api
