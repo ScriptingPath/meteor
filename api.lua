@@ -18,7 +18,7 @@ local function api.displayPopup(title, text, callback, buttonName)
 	prompt:updateButtons({
 		Text = buttonName or "OK",
 		Callback = function()
-            callback and callback()
+			callback and callback()
 			prompt:_close() 
 		end,
 		Primary = true
