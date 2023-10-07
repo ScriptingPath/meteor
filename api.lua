@@ -215,7 +215,7 @@ end
 
 function MeteorAPI:IsPartInArea(area, part)
     local partPosition = self:getpos(part)
-    local areaPosition = self:getPos(area)
+    local areaPosition = self:getpos(area)
     local areaSize = area.Size
 
     if (not (partPosition and areaPosition and areaSize)) then
