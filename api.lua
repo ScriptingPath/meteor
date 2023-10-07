@@ -16,6 +16,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
+local camera = Workspace.CurrentCamera
 
 local void = function() return 0 end
 local setidentity = set_thread_identity or setidentity or setthreadidentity or (syn and syn.set_thread_identity) or void
@@ -333,6 +334,11 @@ function MeteorAPI:GetRandomPoint(part)
     end
 
     return result
+end
+
+
+function MeteorAPI:GetDirectionRelativeToCamera(direction)
+    return CFrame.new(camera.CFrame.p, camera.CFrame.p + camera.CFrame.lookVector * Vector3.new(1, 0, 1)):VectorToObjectSpace(direction)
 end
 
 
