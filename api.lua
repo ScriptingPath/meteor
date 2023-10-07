@@ -327,10 +327,7 @@ function MeteorAPI:GetRandomPoint(part)
 
     local result = Vector3.new(math.random(min.X + 2, max.X), part.Position.Y, math.random(min.Z + 2, max.Z))
 
-    local npart = Instance.new("Part")
-    npart.Position = result
-
-    if (self:IsPartObstructed(npart)) then
+    if (self:IsObstructed(result)) then
         task.wait()
         return self:GetRandomPoint(part)
     end
