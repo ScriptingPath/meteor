@@ -274,7 +274,7 @@ end
 
 function MeteorAPI:GetDeltaToGoal(goal, rootpos)
     if not (rootpos) then rootpos = self:getpos(self:getroot()) end
-    return (goal - Vector3.new(rootpos.Position.X, 0, rootpos.Position.Z)).Magnitude
+    return (goal - Vector3.new(rootpos.X, 0, rootpos.Z)).Magnitude
 end
 
 
