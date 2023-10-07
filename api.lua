@@ -297,7 +297,7 @@ end
 
 function MeteorAPI:IsObstructed(position, ignore)
     local region = Region3.new(position - Vector3.new(0.5, 0, 0.5), position + Vector3.new(0.5, 0, 0.5))
-    local ignoreList = ignore
+    local ignoreList = ignore or {}
     local parts = Workspace:FindPartsInRegion3WithIgnoreList(region, ignoreList, 2000)
 
     for i, v in pairs(parts) do
