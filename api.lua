@@ -159,7 +159,7 @@ end
 
 
 function MeteorAPI:gethuman()
-    local humanoid = self:GetCharacter():FindFirstChild("Humanoid")
+    local humanoid = self:getcharacter():FindFirstChild("Humanoid")
 
     if (humanoid and humanoid.Health ~= 0) then
         return humanoid
@@ -170,7 +170,7 @@ end
 
 
 function MeteorAPI:getroot()
-    local character = self:GetCharacter()
+    local character = self:getcharacter()
     local rootPart = character:FindFirstChild("HumanoidRootPart")
     local torso = character:FindFirstChild("Torso")
 
