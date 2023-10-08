@@ -24,21 +24,21 @@ local getidentity = get_thread_identity or getidentity or getthreadidentity or (
 
 
 function MeteorAPI:check(x)
-    if not x then
+    if (not x) then
         return false
     end
 
-    if typeof(x) == "Instance" then
-        if not x.Parent then
+    if (typeof(x) == "Instance") then
+        if (not x.Parent) then
             return false
         end
-    elseif typeof(x) == "table" then
-        if #x == 0 then
+    elseif (typeof(x) == "table") then
+        if (#x == 0) then
             return false
         end
     end
 
-    if x == Vector3.zero then
+    if (x == Vector3.zero) then
         return false
     end
 
@@ -64,7 +64,7 @@ end
 
 
 function MeteorAPI:BindToRenderStep(name, priority, func, unbind)
-    if not (name and priority) then
+    if (not (name and priority)) then
         return RunService.RenderStepped:Connect(func)
     end
 
@@ -81,9 +81,9 @@ function MeteorAPI:FireConnections(signal, ...)
             firesignal(signal, args)
         elseif (getconnections) then
             for _, v in pairs(getconnections(signal)) do
-                if v.Fire then
+                if (v.Fire) then
                     v:Fire(args)
-                elseif v.Function then
+                elseif (v.Function) then
                     v.Function(args)
                 else
                     warn("Unable to fire connections")
@@ -274,11 +274,11 @@ end
 
 function MeteorAPI:GetDeltaToGoal(goal, rootpos)
     if not goal then
-        return Vector3.zero
+        return 0
     end
+    if not (rootpos) then rootpos = self:getroot().Position end
 
-    if not (rootpos) then rootpos = self:getpos(self:getroot()) end
-    local result = rootpos - self:getpos(goal)
+    local result = rootpos - goal
     return Vector3.new(result.X, 0, result.Z).Magnitude
 end
 
@@ -311,14 +311,15 @@ end
 
 
 function MeteorAPI:IsPartObstructed(part, ignore)
-    if not part then
+    if (not part) then
         return false
     end
+    if (ignore) == nil then ignore = {} end
 
     local ignoreList = {part, self:getcharacter()}
 
     for _, v in ipairs(ignore) do
-        if typeof(v) == "Instance" then
+        if (typeof(v) == "Instance") then
             table.insert(ignoreList, v)
         end
     end
@@ -353,6 +354,13 @@ function MeteorAPI:Jump()
     if (humanoid:GetStateEnabled(Enum.HumanoidStateType.Jumping) and humanoid:GetState() ~= Enum.HumanoidStateType.Jumping) then
         humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
     end
+end
+
+
+function MeteorAPI:GetDirection(start, destination)
+    if (not start) then start = self:getroot() end
+
+    return (start - destination).Unit
 end
 
 
